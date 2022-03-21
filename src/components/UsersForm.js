@@ -15,16 +15,16 @@ function UserForm ({ addUser, editeUser, cancelEdition, updateUser}) {
     const [ name , setName ] = useState('');
     const [ lastName , setLastName ] = useState('');
     const [ email , setEmail ] = useState('');
-    // const [ password , setPassword ] = useState('');
-    // const [ datebirth , setDatebirth ] = useState('');
+    const [ password , setPassword ] = useState('');
+    const [ datebirth , setDatebirth ] = useState('');
 
 // you will be listening if editeUser has changed, if this is true set
 // all states. useEffect
 useEffect(()=>{
 console.log('user has changes');
 if(editeUser){
-    setName(editeUser.name)
-    setLastName(editeUser.lastName)
+    setName(editeUser.first_name)
+    setLastName(editeUser.last_name)
     setEmail(editeUser.email)
 } else {
     setName('')
@@ -36,13 +36,15 @@ const create = (e) => {
     //here DO post or put to the API
     e.preventDefault()
     const userData = {
-        ID:Date.now(),
-        name,
-        lastName,
-        email
+        id:Date.now(),
+        email:email,
+        password:password,
+        first_name:name,
+        last_name:lastName,
+        birthday:datebirth
     }
     if(editeUser){
-        userData.ID = editeUser.ID;
+        userData.id = editeUser.id;
         updateUser(userData)
     } else {
         addUser(userData)
@@ -64,14 +66,14 @@ const create = (e) => {
                 <label htmlFor="email">Email</label>
                 <input type="text" id="email" onChange={(e)=>setEmail(e.target.value)} value={email}/>
             </p>
-            {/* <p>
+            <p>
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" onChange={(e)=>setPassword(e.target.value)} value={password}/>
+                <input type="text" id="password" onChange={(e)=>setPassword(e.target.value)} value={password}/>
             </p>
             <p>
                 <label htmlFor="birthday">birthday</label>
-                <input type="" id="birthday" onChange={(e)=>setDatebirth(e.target.value)} value={datebirth}/>
-            </p> */}
+                <input type="text" id="birthday" onChange={(e)=>setDatebirth(e.target.value)} value={datebirth}/>
+            </p>
             <button type="submit" >CREAR</button>
             {editeUser && <button onClick={()=>cancelEdition(null)}>Cancel</button>}
         </form>
