@@ -1,15 +1,6 @@
 import React from 'react';
 import  { useState, useEffect } from 'react';
-// formulario donde pondrás los inputs para llenar los siguientes datos:
-// Nombre (“first_name”).
-// Apellido (“last_name”).
-// Email (“email”).
-// Contraseña (“password”).
-// Fecha de nacimiento (“birthday”).
-
-// Al hacer submit, debes hacer una petición “post” para crear el nuevo usuario.
-//  En caso de que haya algún usuario para editar, la petición no sería de tipo 
-//   “post” sino “put”, para editarlo.
+import Button from 'react-bootstrap/Button';
 
 function UserForm ({ addUser, editeUser, cancelEdition, updateUser}) {
     const [ name , setName ] = useState('');
@@ -18,9 +9,7 @@ function UserForm ({ addUser, editeUser, cancelEdition, updateUser}) {
     const [ password , setPassword ] = useState('');
     const [ datebirth , setDatebirth ] = useState('');
 
-// you will be listening if editeUser has changed, if this is true set
-// all states. useEffect
-useEffect(()=>{
+useEffect(() => {
 console.log('user has changes');
 if(editeUser){
     setName(editeUser.first_name)
@@ -31,7 +20,7 @@ if(editeUser){
     setLastName('')
     setEmail('')
 }
-},[editeUser])
+},[ editeUser ])
 const create = (e) => {
     //here DO post or put to the API
     e.preventDefault()
@@ -75,7 +64,7 @@ const create = (e) => {
                 <input type="text" id="birthday" onChange={(e)=>setDatebirth(e.target.value)} value={datebirth}/>
             </p>
             <button type="submit" >CREAR</button>
-            {editeUser && <button onClick={()=>cancelEdition(null)}>Cancel</button>}
+            {editeUser && <Button variant="danger"onClick={()=>cancelEdition(null)}>Cancel</Button>}
         </form>
         
     </div>

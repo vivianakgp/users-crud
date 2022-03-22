@@ -1,28 +1,26 @@
-// listar todos los usuarios, mostrando su nombre, 
-// apellido, email y fecha de nacimiento. Adicionalmente 
-// colocarás dos botones, uno para eliminar, el cuál ejecutará
-//  un “delete” en la API para eliminar el usuario seleccionado.
-//   Y uno para editar, el cuál pondrá toda la información del usuario 
-//   seleccionado en “UsersForm”.
+
 
 function UserList ({users, deleteUser, selectedToEdite}) {
     return (
-    <div className="UserList">
-        <ul>{
+    <div className='userList container mt-5 pb-5'>
+            <div className='userList__content row d-flex flex justify-content-center '>{
             users.map( user => (
-                <li key={user.id}>
-                    <ul>
-                        <li><b>Name:</b>{user.first_name}</li>
-                        <li><b>Last Name:</b>{user.last_name}</li>
-                        <li><b>Email:</b>{user.email}</li>
-                    </ul>
-                    <button onClick={()=>deleteUser(user.id)}>delete</button>
-                    <button onClick={()=>selectedToEdite(user)}>edite</button>
-                </li>
+                <div className='card col-8 mb-2  col-lg-3 p-3  m-2' key={user.id}>
+                    <h2 className='card-title text-center'>{user.first_name}</h2>
+                    <p className='text-center'>{user.last_name}</p>
+                    <p><i class='bi bi-envelope me-2'style={{ fontSize: 20 }}></i>{user.email}</p>
+                    <p><i className='bi bi-calendar-date me-2' style={{ fontSize: 20 }}></i>{user.birthday}</p>
+                    <div className='d-flex flex-row-reverse '>
+                        <i class='bi bi-pencil  p-2 m-2' onClick={()=>selectedToEdite(user)} style={{ fontSize:23, color:'blue' }}></i>
+                        <i class='bi bi-trash  p-2 m-2' onClick={()=>deleteUser(user.id)} style={{ fontSize:23, color:'red'}}></i>
+                    </div>
+
+                    {/* <button onClick={()=>deleteUser(user.id)}>{<i class='bi bi-trash '></i>}</button>
+                    <button onClick={()=>selectedToEdite(user)}>{<i class='bi bi-pencil'></i>}</button> */}
+                </div>
             ))
-        }</ul>        
+            }</div>       
     </div>
     );
-  }
-  
-  export default UserList;
+}
+export default UserList;
