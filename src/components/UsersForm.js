@@ -14,11 +14,7 @@ function UserForm ({ addUser, editeUser, cancelEdition, updateUser}) {
 console.log(editeUser)
 const heandleModal = () => {
     setModalIsActive(!modalIsActive)
-    setName('')
-    setLastName('')
-    setEmail('')
-    setPassword('')
-    setDatebirth('')
+
 };
 useEffect(() => {
 console.log('user has changes');
@@ -36,7 +32,7 @@ if(editeUser){
     setPassword('')
     setDatebirth('')
 }
-},[ editeUser ]);
+},[ editeUser]);
 
 const create = (e) => {
     //here DO post or put to the API
@@ -58,6 +54,11 @@ const create = (e) => {
     } else {
         addUser(userData);
         heandleModal();
+        setName('')
+        setLastName('')
+        setEmail('')
+        setPassword('')
+        setDatebirth('')
     }
 };   
 
