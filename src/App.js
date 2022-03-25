@@ -8,7 +8,7 @@ import UserList from './components/UsersList';
 //   NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
 //   DropdownToggle, DropdownMenu, DropdownItem
 // } from 'react-bootstrap';
-import ThemeProvider from 'react-bootstrap/ThemeProvider';
+// import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 
 
@@ -29,8 +29,10 @@ function App() {
   };
   //ADD NEW USERS
   const addUser = newUser => {
-    axios.post('https://users-crud1.herokuapp.com/users/', newUser)
-    .then(() => getUsers())
+    console.log(newUser)
+    axios.post(`https://users-crud1.herokuapp.com/users/`, newUser)
+    .then((res) => console.log(res) )
+    .catch((err)=> console.log(err))
   };
   //DELETE USER
   const deleteUser = userDelete => {
@@ -40,7 +42,7 @@ function App() {
   //UPDATE USER
       //User selected To Edite
       const selectedToEdite = userToEdite => {
-        // console.log(userToEdite)
+        console.log(userToEdite)
         setEditeUser(userToEdite)
       };
       // abort operation User selected To Edite
@@ -52,7 +54,7 @@ const updateUser =  updatedUser => {
       .then(() => getUsers())
     };
   return (
-    <div className='App'>
+    <div className='App pt-5 d-flex flex-column align-items-center'>
       <UserForm
       addUser={addUser}
       editeUser={editeUser} 
