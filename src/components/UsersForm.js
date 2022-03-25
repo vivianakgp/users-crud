@@ -19,7 +19,7 @@ const heandleModal = () => {
 useEffect(() => {
 console.log('user has changes');
 if(editeUser){
-    heandleModal();
+    // heandleModal();
     setName(editeUser.first_name)
     setLastName(editeUser.last_name)
     setEmail(editeUser.email)
