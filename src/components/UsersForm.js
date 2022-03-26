@@ -12,19 +12,20 @@ function UserForm ({ addUser, editeUser, cancelEdition, updateUser}) {
     const [ datebirth , setDatebirth ] = useState('');
     const [ modalIsActive , setModalIsActive ] = useState(false);
 console.log(editeUser)
-const heandleModal = () => {
-    setModalIsActive(!modalIsActive)
+// const heandleModal = () => {
+//     setModalIsActive(!modalIsActive)
 
-};
+// };
 useEffect(() => {
 console.log('user has changes');
 if(editeUser){
-    // heandleModal();
+    // heandleModal()
     setName(editeUser.first_name)
     setLastName(editeUser.last_name)
     setEmail(editeUser.email)
     setPassword(editeUser.password)
     setDatebirth(editeUser.birthday)
+    setModalIsActive(true)
 } else {
     setName('')
     setLastName('')
@@ -48,12 +49,14 @@ const create = (e) => {
     if(editeUser){
         userData.id = editeUser.id;
         updateUser(userData)
-        heandleModal();
+        // heandleModal();
+        setModalIsActive(false)
         cancelEdition(null);
 
     } else {
         addUser(userData);
-        heandleModal();
+        // heandleModal();
+        setModalIsActive(false)
         setName('')
         setLastName('')
         setEmail('')
@@ -64,9 +67,9 @@ const create = (e) => {
 
     return (
     <div className="UserForm">
-        <Button onClick={()=>heandleModal()}>Add user</Button>
+        <Button onClick={()=>setModalIsActive(true)}>Add user</Button>
         <Modal show={modalIsActive}>
-            <Modal.Header closeButton  onClick={()=>heandleModal()}>Add User</Modal.Header>
+            <Modal.Header closeButton  onClick={()=>setModalIsActive(false)}>Add User</Modal.Header>
             <Modal.Body >
                 <Form className='d-flex flex-column align-items-center' onSubmit={create}>
                     <p>
